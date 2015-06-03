@@ -107,7 +107,7 @@ module OneLogin
           root.attributes["AssertionConsumerServiceURL"] = settings.assertion_consumer_service_url
         end
         if settings.issuer != nil
-          issuer = root.add_element "saml:Issuer"
+          issuer = root.add_element "saml:Issuer", { "xmlns:saml" => "urn:oasis:names:tc:SAML:2.0:assertion" }
           issuer.text = settings.issuer
         end
         if settings.name_identifier_format != nil
@@ -142,7 +142,7 @@ module OneLogin
         end
 
         # embed signature
-        if settings.security[:authn_requests_signed] && settings.private_key && settings.certificate && settings.security[:embed_sign] 
+        if settings.security[:authn_requests_signed] && settings.private_key && settings.certificate && settings.security[:embed_sign]
           private_key = settings.get_sp_key
           cert = settings.get_sp_cert
           request_doc.sign_document(private_key, cert, settings.security[:signature_method], settings.security[:digest_method])
