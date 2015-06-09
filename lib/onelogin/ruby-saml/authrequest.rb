@@ -92,7 +92,7 @@ module OneLogin
         request_doc = XMLSecurity::Document.new
         request_doc.uuid = uuid
 
-        root = request_doc.add_element "samlp:AuthnRequest", { "xmlns:samlp" => "urn:oasis:names:tc:SAML:2.0:protocol", "xmlns:saml" => "urn:oasis:names:tc:SAML:2.0:assertion" }
+        root = request_doc.add_element "samlp:AuthnRequest", { "xmlns:samlp" => "urn:oasis:names:tc:SAML:2.0:protocol" }
         root.attributes['ID'] = uuid
         root.attributes['IssueInstant'] = time
         root.attributes['Version'] = "2.0"
